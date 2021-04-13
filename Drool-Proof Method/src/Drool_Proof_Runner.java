@@ -4,21 +4,46 @@ import java.io.IOException;
 public class Drool_Proof_Runner {
 
 	public static void main(String[] args) throws IOException{
-//		Scanner userInput = new Scanner(System.in);
-//		System.out.println("Purchase: ");
-//		int purchase = userInput.nextInt();
-//		System.out.println("Payment: ");
-//		int payment = userInput.nextInt();
-//		int change = payment-purchase;
-//		System.out.println("Change: " + change);
-//		System.out.println();
-//		System.out.println("Breakdown");
 		
+		String [] txt = new String[6];
 		Scanner file = new Scanner(new File("Input"));
-		int counter = 1;
-		while(file.hasNext()) {
-			System.out.println();
+		for(int i = 0; i < txt.length; i++) {
+			txt [i] = file.nextLine();
 		}
+		Scanner userInput = new Scanner(System.in);
+		System.out.println("Which Currency Do You Want To Use: ");
+		for(int r = 0; r< txt.length; r+=2) {
+			System.out.println(r + ".  " + txt[r]);
+		}
+		int currIn = userInput.nextInt();
+		int [] currency = new int [8];
+		if(currIn == 1){
+			for(int ii = 0; ii < currency.length; ii++) {
+				currency[ii] = 
+			}
+		}
+		if(currIn == 2) {
+			
+		}
+		if(currIn == 3) {
+			
+		}
+		
+	
+		System.out.println("Purchase: ");
+		int purchase = userInput.nextInt();
+		System.out.println("Payment: ");
+		int payment = userInput.nextInt();
+		int change = payment-purchase;
+		System.out.println("Change: " + change);
+		System.out.println();
+		System.out.println("Breakdown");
+		
+		
+		
+		
+		
+		
 
 
 //		String returnAmount = Integer.toString(change);
