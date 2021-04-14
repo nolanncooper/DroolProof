@@ -1,45 +1,90 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-public class Drool_Proof_Runner {
+
+public class DroolProofRunner {
 
 	public static void main(String[] args) throws IOException{
 		
-		String [] txt = new String[6];
-		Scanner file = new Scanner(new File("Input"));
-		for(int i = 0; i < txt.length; i++) {
-			txt [i] = file.nextLine();
-		}
+//		String [] txt = new String[8];
+//		Scanner file = new Scanner(new File("Input"));
+//		for(int i = 0; i < txt.length; i++) {
+//			txt [i] = file.nextLine();
+//		}
+//		Scanner userInput = new Scanner(System.in);
+//		System.out.println("Which Currency Do You Want To Use: ");
+//		for(int r = 0; r< txt.length; r++) {
+//			if(r = 0) {
+//				System.out.println(r + ".  " + txt[r]);
+//
+//			}
+//		}
+//		int currIn = userInput.nextInt();
+//		int [] currency = new int [8];
+//		if(currIn == 1){
+//			String str = txt[1];
+//			String [] txtArray = str.split(" ");
+//			for(int ii = 0; ii < currency.length; ii++) {
+//				currency[ii] = Integer.parseInt(txtArray[ii]);
+//			}
+//			for(int y : currency) {
+//				System.out.println(y);
+//			}
+//		}
+//		if(currIn == 2) {
+//			
+//		}
+//		if(currIn == 3) {
+//			
+//		}
+//		
+//		if(currIn == 4) {
+//			
+//		}
+		
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("Which Currency Do You Want To Use: ");
-		for(int r = 0; r< txt.length; r+=2) {
-			System.out.println(r + ".  " + txt[r]);
+		Scanner intInput = new Scanner(System.in);
+		Scanner txtFile = new Scanner(new File("Input"));
+		ArrayList <String> steve = new ArrayList <String>();
+		while(txtFile.hasNext()) {
+			steve.add(txtFile.nextLine());
 		}
-		int currIn = userInput.nextInt();
-		int [] currency = new int [8];
-		if(currIn == 1){
-			for(int ii = 0; ii < currency.length; ii++) {
-				currency[ii] = 
+		
+		System.out.println("WHICH CURRENCY WOULD YOU LIKE TO USE? ");
+		for(int i = 0; i < steve.size(); i +=2) {
+			System.out.println(steve.get(i));
+		}
+		String currencyInput = userInput.nextLine();
+		int currencyIndex = 0;
+		for(String str : steve) {
+			if(str.equals(currencyInput)) {
+				break;
 			}
+			currencyIndex++;
 		}
-		if(currIn == 2) {
-			
-		}
-		if(currIn == 3) {
-			
+		int [] currency = new int [8];
+		String tempStr = steve.get(currencyIndex+1);
+		String [] temps = tempStr.split(" ");
+		
+		for(int i = 0; i < currency.length; i++) {
+			currency[i] = Integer.parseInt(temps[i]);
 		}
 		
 	
 		System.out.println("Purchase: ");
-		int purchase = userInput.nextInt();
+		int purchase = intInput.nextInt();
 		System.out.println("Payment: ");
-		int payment = userInput.nextInt();
+		int payment = intInput.nextInt();
 		int change = payment-purchase;
 		System.out.println("Change: " + change);
 		System.out.println();
 		System.out.println("Breakdown");
 		
-		
+		breakdown(change, currency);
 		
 		
 		
@@ -47,8 +92,6 @@ public class Drool_Proof_Runner {
 
 
 //		String returnAmount = Integer.toString(change);
-		int [] currency = {1,5,10,25,50,100,500,1000};
-		int [] currency2 = {1,7,14,35,70,140,700,1400};
 		
 		
 //		String [] arrayReturn = returnAmount.split("");
@@ -96,6 +139,24 @@ public class Drool_Proof_Runner {
 			newArray[i] = n[i];
 		}
 		return newArray;
+	}
+	
+	public static ArrayList<String> readLines(String fileName) {
+		String line = null;
+		ArrayList<String> theLines = new ArrayList<String>();
+		try {
+			FileReader fileReader = new FileReader(fileName);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			while ((line = bufferedReader.readLine()) != null) {
+				theLines.add(line);
+			}
+			bufferedReader.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("Unable to open file '" + fileName + "'");
+		} catch (IOException ex) {
+			System.out.println("Error reading file '" + fileName + "'");
+		}
+		return theLines;
 	}
 
 }
